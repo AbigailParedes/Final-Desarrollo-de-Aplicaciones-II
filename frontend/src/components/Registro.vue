@@ -152,6 +152,7 @@ export default class Registro extends Vue {
   passwordSign: string = "";
   passwordCompare: string = "";
   emailForgot: string = "";
+  $router: any;
 
   login() {
     signInWithEmailAndPassword(auth, this.email, this.password)
@@ -159,6 +160,7 @@ export default class Registro extends Vue {
         const user = credenciales.user;
         console.log(user);
         window.alert("Inicio de sesión Exitoso");
+        this.$router.push("/todO");
       })
       .catch((error) => {
         window.alert("Fallo el Inicio de Sesión");

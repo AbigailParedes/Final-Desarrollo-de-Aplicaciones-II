@@ -61,6 +61,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
+import { auth } from "../firebaseConfig";
 
 interface Tarea {
   _id: string;
@@ -88,6 +89,19 @@ export default class Hello extends Vue {
     fecha: "",
     completado: false,
   };
+  $router: any;
+
+  signOut() {
+    auth
+      .signOut()
+      .then(() => {
+        //cerrar sesión correctamente, redirigir a la página de inicio de sesión
+        this.$router.push("/");
+      })
+      .catch((error) => {
+        console.log("Error al serrar sesión:", error);
+      });
+  }
 
   async obtenerTareas(): Promise<void> {
     try {

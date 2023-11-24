@@ -37,7 +37,18 @@
       <label>Cuerpo</label>
       <textarea v-model="nuevaTarea.cuerpo"></textarea>
       <br />
-      <button @click="crearTarea()">Crear Tarea</button>
+      <button
+        @click="crearTarea()"
+        class="btn btn-danger mt-2"
+      >
+        Crear Tarea
+      </button>
+      <button
+        @click="signOut"
+        class="btn btn-danger mt-2"
+      >
+        Cerrar Sesión
+      </button>
     </div>
     <h1>Lista de tareas</h1>
     <ul>

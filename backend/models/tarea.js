@@ -8,6 +8,6 @@ const tareaEsquema = new mongoose.Schema({
   // ... otros campos según tus necesidades
 });
 
-const Tarea = mongoose.model('Tarea', tareaEsquema);
+const Tarea = mongoose.model('tarea', tareaEsquema);
 
 module.exports = Tarea;

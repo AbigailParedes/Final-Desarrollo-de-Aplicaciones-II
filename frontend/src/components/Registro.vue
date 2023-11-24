@@ -152,6 +152,7 @@ export default class Registro extends Vue {
   passwordSign: string = "";
   passwordCompare: string = "";
   emailForgot: string = "";
+  $router: any;
 
   login() {
     signInWithEmailAndPassword(auth, this.email, this.password)
@@ -159,6 +160,7 @@ export default class Registro extends Vue {
         const user = credenciales.user;
         console.log(user);
         window.alert("Inicio de sesión Exitoso");
+        this.$router.push("/todO");
       })
       .catch((error) => {
         window.alert("Fallo el Inicio de Sesión");
@@ -175,7 +177,7 @@ export default class Registro extends Vue {
 
     if (this.passwordSign === this.passwordCompare) {
       createUserWithEmailAndPassword(auth, this.emailSign, this.passwordSign)
-        .then((credenciales) => {
+        .then((credenciales: { user: any }) => {
           const user = credenciales.user;
           console.log(user);
           window.alert("Registro Exitoso");
@@ -183,7 +185,7 @@ export default class Registro extends Vue {
           this.passwordSign = "";
           this.passwordCompare = "";
         })
-        .catch((error) => {
+        .catch((error: any) => {
           window.alert("Fallo el Registro");
           console.error(error);
         });
@@ -207,7 +209,7 @@ export default class Registro extends Vue {
         this.emailForgot = "";
         this.mostrarFormulario = "login";
       })
-      .catch((error) => {
+      .catch((error: any) => {
         window.alert("Error al enviar el correo de recuperación");
         console.error(error);
       });

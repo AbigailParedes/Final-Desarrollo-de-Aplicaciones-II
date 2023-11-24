@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const routes = require('./routers/tareaRoutes');
+const routes = require('./src/routers/index');
 
 const app = express();
 const port = 3000;
@@ -29,7 +29,7 @@ db.once('open', () => {
   console.log('Conexión exitosa a MongoDB');
 });
 
-app.use('/upso', routes);
+app.use('/todo', routes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto ${port}`);

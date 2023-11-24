@@ -1,21 +1,5 @@
 <template>
   <div class="hello">
-    <h1>Lista de tareas</h1>
-    <ul>
-      <li
-        v-for="tareaItem in tarea"
-        :key="tareaItem._id"
-      >
-        {{ tareaItem.titulo }} -
-        {{ tareaItem.completado ? "Completada" : "Pendiente" }}
-        <br />
-        {{ tareaItem.fecha }} - {{ tareaItem.cuerpo }}
-        <br />
-        <button @click="editarTarea(tareaItem._id)">Editar</button>
-        <button @click="borrarTarea(tareaItem._id)">Eliminar</button>
-      </li>
-    </ul>
-
     <div v-if="editandoTarea">
       <h3>Editar Tarea</h3>
       <label>Título</label>
@@ -55,6 +39,21 @@
       <br />
       <button @click="crearTarea()">Crear Tarea</button>
     </div>
+    <h1>Lista de tareas</h1>
+    <ul>
+      <li
+        v-for="tareaItem in tarea"
+        :key="tareaItem._id"
+      >
+        {{ tareaItem.titulo }} -
+        {{ tareaItem.completado ? "Completada" : "Pendiente" }}
+        <br />
+        {{ tareaItem.fecha }} - {{ tareaItem.cuerpo }}
+        <br />
+        <button @click="editarTarea(tareaItem._id)">Editar</button>
+        <button @click="borrarTarea(tareaItem._id)">Eliminar</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -105,7 +104,7 @@ export default class Hello extends Vue {
 
   async obtenerTareas(): Promise<void> {
     try {
-      const respuesta = await axios.get(`http://localhost:3000/upso/tareas`);
+      const respuesta = await axios.get(`http://localhost:3000/todo/tareas`);
       this.tarea = respuesta.data;
     } catch (error) {
       console.log(error);
@@ -122,7 +121,7 @@ export default class Hello extends Vue {
   async actualizarTarea(): Promise<void> {
     try {
       const respuesta = await axios.put(
-        `http://localhost:3000/upso/tareas/${this.tareaEditada._id}`,
+        `http://localhost:3000/todo/tareas/${this.tareaEditada._id}`,
         this.tareaEditada
       );
       const actualizarIndexTarea = this.tarea.findIndex(
@@ -139,7 +138,7 @@ export default class Hello extends Vue {
   async crearTarea(): Promise<void> {
     try {
       const respuesta = await axios.post(
-        `http://localhost:3000/upso/tareas/`,
+        `http://localhost:3000/todo/tareas/`,
         this.nuevaTarea
       );
       this.tarea.push(respuesta.data);
@@ -153,7 +152,7 @@ export default class Hello extends Vue {
 
   async borrarTarea(id: string): Promise<void> {
     try {
-      await axios.delete(`http://localhost:3000/upso/tareas/${id}`);
+      await axios.delete(`http://localhost:3000/todo/tareas/${id}`);
       this.tarea = this.tarea.filter((tarea) => tarea._id !== id);
     } catch (error) {
       console.log(error);

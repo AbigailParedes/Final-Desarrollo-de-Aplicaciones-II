@@ -2,29 +2,32 @@
   <div class="container my-4">
     <div class="row justify-content-center">
       <div class="col-md-6">
+        
         <form
           v-if="mostrarFormulario === 'login'"
           @submit.prevent="login"
           action=""
           class="mt-4 login-form"
         >
-          <h2 class="form-title">Iniciar Sesión</h2>
+          <h2 class="form-title">Login</h2>
           <div class="form-group">
-            <label for="emailLogin">Correo Electrónico:</label>
+          
             <input
               type="email"
               class="form-control"
               id="emailLogin"
               v-model="email"
+              placeholder="Correo Electronico"
             />
           </div>
           <div class="form-group">
-            <label for="passwordLogin">Contraseña:</label>
+          
             <input
               type="password"
               class="form-control"
               id="passwordLogin"
               v-model="password"
+              placeholder="Contraseña"
             />
           </div>
           <button
@@ -55,32 +58,35 @@
           @submit.prevent="register"
           class="mt-4 register-form"
         >
-          <h2 class="form-title">Registrarse</h2>
+          <h2 class="form-title">Register</h2>
           <div class="form-group">
-            <label for="emailRegister">Correo Electrónico:</label>
+          
             <input
               type="email"
               class="form-control"
               id="emailRegister"
               v-model="emailSign"
+              placeholder="Correo Electronico"
             />
           </div>
           <div class="form-group">
-            <label for="passwordRegister">Contraseña:</label>
+          
             <input
               type="password"
               class="form-control"
               id="passwordRegister"
               v-model="passwordSign"
+              placeholder="Contraseña"
             />
           </div>
           <div class="form-group">
-            <label for="passwordRepeat">Repetir Contraseña:</label>
+          
             <input
               type="password"
               class="form-control"
               id="passwordRepeat"
               v-model="passwordCompare"
+              placeholder="Repetir Contraseña"
             />
           </div>
           <button
@@ -106,12 +112,13 @@
         >
           <h2 class="form-title">¿Olvidaste tu Contraseña?</h2>
           <div class="form-group">
-            <label for="emailForgot">Correo Electrónico:</label>
+      
             <input
               type="email"
               class="form-control"
               id="emailForgot"
               v-model="emailForgot"
+              placeholder="Correo Electronico"
             />
           </div>
           <button
@@ -227,20 +234,21 @@ export default class Registro extends Vue {
 .recovery-form {
   background-color: rgb(231, 243, 227);
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.8s ease;
 }
 
 .login-form:hover,
 .register-form:hover,
 .recovery-form:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 50px rgba(37, 37, 37, 0.5);
 }
 
 .form-title {
   color: #333;
-  font-size: 1.5em;
+  font-size: 40px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -252,10 +260,25 @@ label {
   color: #555;
 }
 
+input{
+  border-radius: 30px;
+  width: 60%;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: rgb(153, 255, 0, 0.35)
+}
+
+input:focus{
+  background-color: rgba(204, 83, 248, 0.35)
+}
+
 .btn-success,
 .btn-info {
   background-color: #4caf50;
   border: none;
+  font-size: 15px;
 }
 
 .btn-success:hover,

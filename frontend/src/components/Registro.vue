@@ -2,7 +2,6 @@
   <div class="container my-4">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        
         <form
           v-if="mostrarFormulario === 'login'"
           @submit.prevent="login"
@@ -11,7 +10,6 @@
         >
           <h2 class="form-title">Login</h2>
           <div class="form-group">
-          
             <input
               type="email"
               class="form-control"
@@ -21,7 +19,6 @@
             />
           </div>
           <div class="form-group">
-          
             <input
               type="password"
               class="form-control"
@@ -60,7 +57,6 @@
         >
           <h2 class="form-title">Register</h2>
           <div class="form-group">
-          
             <input
               type="email"
               class="form-control"
@@ -70,7 +66,6 @@
             />
           </div>
           <div class="form-group">
-          
             <input
               type="password"
               class="form-control"
@@ -80,7 +75,6 @@
             />
           </div>
           <div class="form-group">
-          
             <input
               type="password"
               class="form-control"
@@ -112,7 +106,6 @@
         >
           <h2 class="form-title">¿Olvidaste tu Contraseña?</h2>
           <div class="form-group">
-      
             <input
               type="email"
               class="form-control"
@@ -260,18 +253,18 @@ label {
   color: #555;
 }
 
-input{
+input {
   border-radius: 30px;
   width: 60%;
   font-size: 15px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background-color: rgb(153, 255, 0, 0.35)
+  background-color: rgb(153, 255, 0, 0.35);
 }
 
-input:focus{
-  background-color: rgba(204, 83, 248, 0.35)
+input:focus {
+  background-color: rgba(204, 83, 248, 0.35);
 }
 
 .btn-success,

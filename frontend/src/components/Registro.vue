@@ -2,13 +2,32 @@
   <div class="container my-4">
     <div class="row justify-content-center">
       <div class="col-md-6">
+        <!-- Dentro de tu componente Registro.vue -->
+        <h2
+          class="form-title text-right"
+          v-if="mostrarFormulario === 'login'"
+        >
+          Login
+        </h2>
+        <h2
+          class="form-title text-right"
+          v-else-if="mostrarFormulario === 'registro'"
+        >
+          Registrarse
+        </h2>
+        <h2
+          class="form-title text-right"
+          v-else
+        >
+          ¿Olvidaste tu Contraseña?
+        </h2>
+
         <form
           v-if="mostrarFormulario === 'login'"
           @submit.prevent="login"
           action=""
           class="mt-4 login-form"
         >
-          <h2 class="form-title">Login</h2>
           <div class="form-group">
             <input
               type="email"
@@ -55,7 +74,6 @@
           @submit.prevent="register"
           class="mt-4 register-form"
         >
-          <h2 class="form-title">Register</h2>
           <div class="form-group">
             <input
               type="email"
@@ -104,7 +122,6 @@
           @submit.prevent="forgotPassword"
           class="mt-4 recovery-form"
         >
-          <h2 class="form-title">¿Olvidaste tu Contraseña?</h2>
           <div class="form-group">
             <input
               type="email"
@@ -222,6 +239,9 @@ export default class Registro extends Vue {
 </script>
 
 <style scoped>
+.form-title.text-right {
+  text-align: left;
+}
 .login-form,
 .register-form,
 .recovery-form {

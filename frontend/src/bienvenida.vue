@@ -19,9 +19,9 @@ import { Component, Vue } from "vue-property-decorator";
 
 export default Vue.extend({
   mounted(): void {
-    console.log("Componente de Bienvenida montado");
+    
     setTimeout(() => {
-      console.log("Redirigiendo a la página de inicio de sesión");
+      
       document.body.classList.add("hidden");
       if (this.$route.path !== "/registro") {
         this.$router.push("/registro"); // Redirige a la página de inicio de sesión después de 5 segundos

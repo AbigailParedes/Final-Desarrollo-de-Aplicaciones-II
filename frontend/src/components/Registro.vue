@@ -1,5 +1,7 @@
 <template>
+  
   <div class="container my-4">
+    <img src="../assets/Listo_logo.png" alt="">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <!-- Dentro de tu componente Registro.vue -->
@@ -159,6 +161,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 @Component
 export default class Registro extends Vue {
@@ -176,11 +179,19 @@ export default class Registro extends Vue {
       .then((credenciales) => {
         const user = credenciales.user;
         console.log(user);
-        window.alert("Inicio de sesión Exitoso");
+        Swal.fire({
+        title: "Exito!",
+        text: "Inicio de sesion exitoso!",
+        icon: "success"
+      });
         this.$router.push("/todO");
       })
       .catch((error) => {
-        window.alert("Fallo el Inicio de Sesión");
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Correo y/o contraseña Incorrecto/s!",
+       });
         console.error(error);
       });
   }
@@ -188,7 +199,11 @@ export default class Registro extends Vue {
   register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.emailSign)) {
-      window.alert("Correo electrónico inválido");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ingrese un correo valido!",
+       });
       return;
     }
 
@@ -197,17 +212,29 @@ export default class Registro extends Vue {
         .then((credenciales: { user: any }) => {
           const user = credenciales.user;
           console.log(user);
-          window.alert("Registro Exitoso");
+          Swal.fire({
+          title: "Exito!",
+          text: "Usuario registrado con exito!",
+          icon: "success"
+          });
 
           this.passwordSign = "";
           this.passwordCompare = "";
         })
         .catch((error: any) => {
-          window.alert("Fallo el Registro");
+          Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Faltan campos por completar!",
+       });
           console.error(error);
         });
     } else {
-      window.alert("Las contraseñas no coinciden");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden!",
+       });
       this.passwordSign = "";
       this.passwordCompare = "";
     }
@@ -216,18 +243,30 @@ export default class Registro extends Vue {
   forgotPassword() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.emailForgot)) {
-      window.alert("Correo electrónico inválido");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Ingrese un correo valido!",
+       });
       return;
     }
 
     sendPasswordResetEmail(auth, this.emailForgot)
       .then(() => {
-        window.alert("Correo de recuperación enviado exitosamente");
+        Swal.fire({
+          title: "Exito!",
+          text: "Correo de recuperacion enviado!",
+          icon: "success"
+          });
         this.emailForgot = "";
         this.mostrarFormulario = "login";
       })
       .catch((error: any) => {
-        window.alert("Error al enviar el correo de recuperación");
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Error al enviar el correo!",
+       });
         console.error(error);
       });
   }
@@ -241,6 +280,8 @@ export default class Registro extends Vue {
 <style scoped>
 .form-title.text-right {
   text-align: left;
+  
+  text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.4);
 }
 .login-form,
 .register-form,
@@ -304,7 +345,19 @@ input:focus {
 .btn-info:active {
   background-color: #3e8e41;
 }
+img{
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -350px;
+  border-radius: 50px;
+  transition:  0.5s ease;
+  
+}
+img:hover{
+  width: 500px;
 
+}
 .custom-btn {
   color: #fff !important;
 }

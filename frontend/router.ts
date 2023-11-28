@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, {NavigationGuard} from 'vue-router';
 
+import Bienvenida from './src/bienvenida.vue';
 import todO from './src/todO.vue';
 import { auth } from "./firebaseConfig";
 import Registro from "./src/components/Registro.vue";
@@ -21,7 +22,8 @@ const requireAuth: NavigationGuard = function (to, from, next){
 };
 
 const routes = [
-    { path: '/', component: Registro },
+    { path: '/', component: Bienvenida },
+    { path: '/registro', component: Registro },
     { path: '/todO', component: todO, beforeEnter: requireAuth as NavigationGuard,// utiliza el guard requiereAuth para proteger la ruta
 },
 ];

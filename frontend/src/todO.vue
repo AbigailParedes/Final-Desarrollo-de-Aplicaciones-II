@@ -1,61 +1,57 @@
 <template>
+
   <div class="hello">
+
+  
+
+       <img src="./assets/Listo_logo.png" alt="">
+
+      
+
+  
     <div v-if="editandoTarea">
       <h3>Editar Tarea</h3>
       <label>Título</label>
       <input v-model="tareaEditada.titulo" />
       <br />
       <label>Fecha</label>
-      <input
-        type="date"
-        v-model="tareaEditada.fecha"
-      />
+      <input type="date" v-model="tareaEditada.fecha" />
       <br />
       <label>Cuerpo</label>
       <textarea v-model="tareaEditada.cuerpo"></textarea>
       <br />
       <label>Completada</label>
-      <input
-        type="checkbox"
-        v-model="tareaEditada.completado"
-      />
+      <input type="checkbox" v-model="tareaEditada.completado" />
       <br />
       <button @click="actualizarTarea()">Guardar Cambios</button>
     </div>
 
-    <div>
+
+   
+
+    <div class="container">
+
       <h3>Nueva Tarea</h3>
       <label>Título</label>
       <input v-model="nuevaTarea.titulo" />
       <br />
       <label>Fecha</label>
-      <input
-        type="date"
-        v-model="nuevaTarea.fecha"
-      />
+      <input type="date" v-model="nuevaTarea.fecha" />
       <br />
       <label>Cuerpo</label>
       <textarea v-model="nuevaTarea.cuerpo"></textarea>
       <br />
-      <button
-        @click="crearTarea()"
-        class="btn btn-danger mt-2"
-      >
+      <button @click="crearTarea()" class="btn btn-danger mt-2">
         Crear Tarea
       </button>
-      <button
-        @click="signOut"
-        class="btn btn-danger mt-2"
-      >
-        Cerrar Sesión
-      </button>
+      <button @click="signOut" class="btn btn-danger mt-2" id="cerrar-sesion"> Cerrar Sesión </button>
+     
     </div>
-    <h1>Lista de tareas</h1>
+    
+    <h1 class="titulo-lista">Lista de tareas</h1>
+
     <ul>
-      <li
-        v-for="tareaItem in tarea"
-        :key="tareaItem._id"
-      >
+      <li v-for="tareaItem in tarea" :key="tareaItem._id">
         {{ tareaItem.titulo }} -
         {{ tareaItem.completado ? "Completada" : "Pendiente" }}
         <br />
@@ -189,6 +185,11 @@ export default class Hello extends Vue {
 
 <style scoped>
 .hello {
+  max-width: 100%;
+ 
+  font-family: "Arial", sans-serif;
+}
+.container{
   max-width: 700px;
   margin: 0 auto;
   font-family: "Arial", sans-serif;
@@ -210,6 +211,20 @@ li {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f8f8f8;
+}
+
+img{
+  width: 150px;
+  margin-right: 1800px;
+  margin-top: -600px;
+  
+}
+
+.navbar{
+  width: 1000vh;
+  height: 90px;
+  padding: 25px;
+  
 }
 
 button {
@@ -241,6 +256,9 @@ textarea {
   padding: 8px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  border-radius: 10px;
+  padding: 15px;
+  border: none;
 }
 
 input[type="checkbox"] {
@@ -249,7 +267,7 @@ input[type="checkbox"] {
 
 button {
   cursor: pointer;
-  background-color: #008cba;
+  background-color: #764ba2;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -258,6 +276,15 @@ button {
 }
 
 button:hover {
-  background-color: #005580;
+  background-color: #d5fa6f;
+  color: black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.titulo-lista {
+  font-size: 30px;
+  color: #5b5b5b;
+  font-family: "Istok Web", sans-serif;
+  font-weight: bold;
 }
 </style>

@@ -246,7 +246,7 @@ export default class Registro extends Vue {
 .register-form,
 .recovery-form {
   background-color: rgb(231, 243, 227);
-  padding: 20px;
+  padding: 30px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.8s ease;
@@ -259,8 +259,9 @@ export default class Registro extends Vue {
 }
 
 .form-title {
-  color: #333;
-  font-size: 40px;
+  color: #5B5B5B;
+  font-size: 45px;
+  font-family: 'Istok Web', sans-serif;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -284,7 +285,7 @@ input {
 }
 
 input:focus {
-  background-color: rgba(204, 83, 248, 0.35);
+  background-color: rgba(266, 199, 254, 0.35);
 }
 
 .btn-success,

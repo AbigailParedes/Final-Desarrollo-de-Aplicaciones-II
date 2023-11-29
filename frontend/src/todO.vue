@@ -1,57 +1,73 @@
 <template>
-
   <div class="hello">
+    <img
+      src="./assets/Listo_logo.png"
+      alt=""
+    />
 
-  
-
-       <img src="./assets/Listo_logo.png" alt="">
-
-      
-
-  
     <div v-if="editandoTarea">
       <h3>Editar Tarea</h3>
       <label>Título</label>
       <input v-model="tareaEditada.titulo" />
       <br />
       <label>Fecha</label>
-      <input type="date" v-model="tareaEditada.fecha" />
+      <input
+        type="date"
+        v-model="tareaEditada.fecha"
+      />
       <br />
       <label>Cuerpo</label>
       <textarea v-model="tareaEditada.cuerpo"></textarea>
       <br />
       <label>Completada</label>
-      <input type="checkbox" v-model="tareaEditada.completado" />
+      <input
+        type="checkbox"
+        v-model="tareaEditada.completado"
+      />
       <br />
       <button @click="actualizarTarea()">Guardar Cambios</button>
     </div>
 
-
-   
-
     <div class="container">
-
       <h3>Nueva Tarea</h3>
       <label for="titulo-tarea">Título</label>
       <input v-model="nuevaTarea.titulo" />
       <br />
       <label for="date">Fecha</label>
-      <input id="date" type="date" v-model="nuevaTarea.fecha" />
+      <input
+        id="date"
+        type="date"
+        v-model="nuevaTarea.fecha"
+      />
       <br />
       <label for="cuerpo">Cuerpo</label>
-      <textarea v-model="nuevaTarea.cuerpo" id="cuerpo"></textarea>
+      <textarea
+        v-model="nuevaTarea.cuerpo"
+        id="cuerpo"
+      ></textarea>
       <br />
-      <button @click="crearTarea()" class="btn btn-danger mt-2">
+      <button
+        @click="crearTarea()"
+        class="btn btn-danger mt-2"
+      >
         Crear Tarea
       </button>
-      <button @click="signOut" class="btn btn-danger mt-2" id="cerrar-sesion"> Cerrar Sesión </button>
-     
+      <button
+        @click="signOut"
+        class="btn btn-danger mt-2"
+        id="cerrar-sesion"
+      >
+        Cerrar Sesión
+      </button>
     </div>
-    
+
     <h1 class="titulo-lista">Lista de tareas</h1>
 
     <ul>
-      <li v-for="tareaItem in tarea" :key="tareaItem._id">
+      <li
+        v-for="tareaItem in tarea"
+        :key="tareaItem._id"
+      >
         {{ tareaItem.titulo }} -
         {{ tareaItem.completado ? "Completada" : "Pendiente" }}
         <br />
@@ -68,6 +84,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 import { auth } from "../firebaseConfig";
+import Swal from "sweetalert2";
 
 interface Tarea {
   _id: string;
@@ -141,17 +158,36 @@ export default class Hello extends Vue {
       console.log(error);
     }
   }
+  compararTituloFecha() {
+    if (this.nuevaTarea.titulo === "" && this.nuevaTarea.fecha === "") {
+      return "titulo ni fecha";
+    } else if (this.nuevaTarea.titulo === "") {
+      return "titulo";
+    } else if (this.nuevaTarea.fecha === "") {
+      return "fecha";
+    }
+  }
 
   async crearTarea(): Promise<void> {
     try {
-      const respuesta = await axios.post(
-        `http://localhost:3000/todo/tareas/`,
-        this.nuevaTarea
-      );
-      this.tarea.push(respuesta.data);
-      this.nuevaTarea.titulo = "";
-      this.nuevaTarea.cuerpo = "";
-      this.nuevaTarea.fecha = "";
+      if (this.nuevaTarea.titulo === "" || this.nuevaTarea.fecha === "") {
+        Swal.fire({
+          title: "error!",
+          text: `No se puede crear una tarea sin ${this.compararTituloFecha()}`,
+          icon: "error",
+        });
+      } else {
+        console.log("Creando tarea:", this.nuevaTarea);
+        const respuesta = await axios.post(
+          `http://localhost:3000/upso/tareas/`,
+          this.nuevaTarea
+        );
+        console.log("Respuesta del servidor:", respuesta.data);
+        this.tarea.push(respuesta.data);
+        this.nuevaTarea.titulo = "";
+        this.nuevaTarea.cuerpo = "";
+        this.nuevaTarea.fecha = "";
+      }
     } catch (error) {
       console.error(error);
     }
@@ -186,10 +222,10 @@ export default class Hello extends Vue {
 <style scoped>
 .hello {
   max-width: 100%;
- 
+
   font-family: "Arial", sans-serif;
 }
-.container{
+.container {
   max-width: 700px;
   margin: 0 auto;
   font-family: "Arial", sans-serif;
@@ -213,18 +249,16 @@ li {
   background-color: #f8f8f8;
 }
 
-img{
+img {
   width: 150px;
   margin-right: 1800px;
   margin-top: -600px;
-  
 }
 
-.navbar{
+.navbar {
   width: 1000vh;
   height: 90px;
   padding: 25px;
-  
 }
 
 button {

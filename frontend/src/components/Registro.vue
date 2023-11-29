@@ -1,7 +1,9 @@
 <template>
-  
   <div class="container my-4">
-    <img src="../assets/Listo_logo.png" alt="">
+    <img
+      src="../assets/Listo_logo.png"
+      alt=""
+    />
     <div class="row justify-content-center">
       <div class="col-md-6">
         <!-- Dentro de tu componente Registro.vue -->
@@ -161,7 +163,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 @Component
 export default class Registro extends Vue {
@@ -180,18 +182,18 @@ export default class Registro extends Vue {
         const user = credenciales.user;
         console.log(user);
         Swal.fire({
-        title: "Exito!",
-        text: "Inicio de sesion exitoso!",
-        icon: "success"
-      });
+          title: "Exito!",
+          text: "Inicio de sesion exitoso!",
+          icon: "success",
+        });
         this.$router.push("/todO");
       })
       .catch((error) => {
         Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Correo y/o contraseña Incorrecto/s!",
-       });
+          icon: "error",
+          title: "Oops...",
+          text: "Correo y/o contraseña Incorrecto/s!",
+        });
         console.error(error);
       });
   }
@@ -203,7 +205,7 @@ export default class Registro extends Vue {
         icon: "error",
         title: "Oops...",
         text: "Ingrese un correo valido!",
-       });
+      });
       return;
     }
 
@@ -213,9 +215,9 @@ export default class Registro extends Vue {
           const user = credenciales.user;
           console.log(user);
           Swal.fire({
-          title: "Exito!",
-          text: "Usuario registrado con exito!",
-          icon: "success"
+            title: "Exito!",
+            text: "Usuario registrado con exito!",
+            icon: "success",
           });
 
           this.passwordSign = "";
@@ -223,10 +225,10 @@ export default class Registro extends Vue {
         })
         .catch((error: any) => {
           Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Faltan campos por completar!",
-       });
+            icon: "error",
+            title: "Oops...",
+            text: "Faltan campos por completar!",
+          });
           console.error(error);
         });
     } else {
@@ -234,7 +236,7 @@ export default class Registro extends Vue {
         icon: "error",
         title: "Oops...",
         text: "Las contraseñas no coinciden!",
-       });
+      });
       this.passwordSign = "";
       this.passwordCompare = "";
     }
@@ -247,7 +249,7 @@ export default class Registro extends Vue {
         icon: "error",
         title: "Oops...",
         text: "Ingrese un correo valido!",
-       });
+      });
       return;
     }
 
@@ -256,17 +258,17 @@ export default class Registro extends Vue {
         Swal.fire({
           title: "Exito!",
           text: "Correo de recuperacion enviado!",
-          icon: "success"
-          });
+          icon: "success",
+        });
         this.emailForgot = "";
         this.mostrarFormulario = "login";
       })
       .catch((error: any) => {
         Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Error al enviar el correo!",
-       });
+          icon: "error",
+          title: "Oops...",
+          text: "Error al enviar el correo!",
+        });
         console.error(error);
       });
   }
@@ -280,7 +282,7 @@ export default class Registro extends Vue {
 <style scoped>
 .form-title.text-right {
   text-align: left;
-  
+
   text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.4);
 }
 .login-form,
@@ -300,9 +302,9 @@ export default class Registro extends Vue {
 }
 
 .form-title {
-  color: #5B5B5B;
+  color: #5b5b5b;
   font-size: 45px;
-  font-family: 'Istok Web', sans-serif;
+  font-family: "Istok Web", sans-serif;
   font-weight: bold;
   margin-bottom: 20px;
 }
@@ -326,7 +328,7 @@ input {
 }
 
 input:focus {
-  background-color: rgba(	118,	75,	162, 0.35);
+  background-color: rgba(118, 75, 162, 0.35);
 }
 
 .btn-success,
@@ -345,18 +347,16 @@ input:focus {
 .btn-info:active {
   background-color: #3e8e41;
 }
-img{
+img {
   width: 400px;
   margin-right: auto;
   margin-left: auto;
   margin-top: -350px;
   border-radius: 50px;
-  transition:  0.5s ease;
-  
+  transition: 0.5s ease;
 }
-img:hover{
+img:hover {
   width: 500px;
-
 }
 .custom-btn {
   color: #fff !important;

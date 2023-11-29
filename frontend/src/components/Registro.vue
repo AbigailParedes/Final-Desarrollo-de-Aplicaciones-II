@@ -286,7 +286,7 @@ export default class Registro extends Vue {
 .login-form,
 .register-form,
 .recovery-form {
-  background-color: rgb(231, 243, 227);
+  background-color: rgb(245, 247, 245);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -326,7 +326,7 @@ input {
 }
 
 input:focus {
-  background-color: rgba(266, 199, 254, 0.35);
+  background-color: rgba(	118,	75,	162, 0.35);
 }
 
 .btn-success,

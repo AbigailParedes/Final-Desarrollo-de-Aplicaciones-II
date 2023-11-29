@@ -32,14 +32,14 @@
     <div class="container">
 
       <h3>Nueva Tarea</h3>
-      <label>Título</label>
+      <label for="titulo-tarea">Título</label>
       <input v-model="nuevaTarea.titulo" />
       <br />
-      <label>Fecha</label>
-      <input type="date" v-model="nuevaTarea.fecha" />
+      <label for="date">Fecha</label>
+      <input id="date" type="date" v-model="nuevaTarea.fecha" />
       <br />
-      <label>Cuerpo</label>
-      <textarea v-model="nuevaTarea.cuerpo"></textarea>
+      <label for="cuerpo">Cuerpo</label>
+      <textarea v-model="nuevaTarea.cuerpo" id="cuerpo"></textarea>
       <br />
       <button @click="crearTarea()" class="btn btn-danger mt-2">
         Crear Tarea

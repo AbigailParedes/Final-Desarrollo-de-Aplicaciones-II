@@ -251,8 +251,10 @@ li {
 
 img {
   width: 150px;
-  margin-right: 1800px;
-  margin-top: -600px;
+  margin-right: auto;
+  margin-left: 0px;
+  margin-top: 0px;
+  display: block;
 }
 
 .navbar {
@@ -275,9 +277,6 @@ button:hover {
   background-color: #45a049;
 }
 
-div {
-  margin-top: 20px;
-}
 
 label {
   display: block;

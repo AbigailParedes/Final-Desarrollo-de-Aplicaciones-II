@@ -282,7 +282,7 @@ export default class Registro extends Vue {
 <style scoped>
 .form-title.text-right {
   text-align: left;
-
+  margin-top: 60px;
   text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.4);
 }
 .login-form,
@@ -351,7 +351,7 @@ img {
   width: 400px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: -350px;
+  margin-top: 30px;
   border-radius: 50px;
   transition: 0.5s ease;
 }

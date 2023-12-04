@@ -5,6 +5,8 @@ import Bienvenida from './src/bienvenida.vue';
 import todO from './src/todO.vue';
 import { auth } from "./firebaseConfig";
 import Registro from "./src/components/Registro.vue";
+import About from './src/components/About.vue';
+import NuestroEquipo from './src/components/NuestroEquipo.vue'
 
 Vue.use(VueRouter);
 
@@ -26,6 +28,8 @@ const routes = [
     { path: '/registro', component: Registro },
     { path: '/todO', component: todO, beforeEnter: requireAuth as NavigationGuard,// utiliza el guard requiereAuth para proteger la ruta
 },
+{ path: '/about', component: About },
+{ path: '/equipo', component: NuestroEquipo }
 ];
 
 const router = new VueRouter({

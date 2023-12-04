@@ -1,6 +1,7 @@
 <!-- Bienvenida.vue -->
+
 <template>
-  <div class="contenedor" >
+  <div id="contenedor" class="container-fluid">
 
     <span>
       Bienvenido a 
@@ -9,7 +10,7 @@
 
     <div class="imagen" >
 
-    <img src="./assets/Listo_logo.png" alt="Login Image" />
+    <img src="./assets/Listo_logo.png" alt="Login Image" class="img-fluid"/>
 
     </div>
 
@@ -41,8 +42,9 @@ export default Vue.extend({
 <style scoped>
 /* Estilos página de bienvenida */
 
-.contenedor{
+#contenedor{
   max-width: 100%;
+  margin-top:200px;
 }
 
 /* estilo de titulo de bienvenido */ 
@@ -55,6 +57,7 @@ span {
   color: #797777;
   margin:0 auto;
   font-family: 'Istok Web', sans-serif;
+ 
   
   
   animation: typing 2s steps(11),
@@ -73,8 +76,6 @@ span {
 /* - - - - -- */ 
 .imagen{
   width: 100%;
-
-
 }
 
 img {
@@ -86,12 +87,11 @@ img {
   
 }
 
-
-/* Agrega estilos adicionales según sea necesario */
-
+/*simulacion de tiempo de transicion a login*/
 iframe{
   margin-top:150px;
   margin-left: 25px;
 
 }
+
 </style>

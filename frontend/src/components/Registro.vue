@@ -1,30 +1,19 @@
 <template>
   <div class="container my-4">
-    <img
-      src="../assets/Listo_logo.png"
-      alt=""
-    />
+    <img src="../assets/Listo_logo.png" alt="" />
     <div class="row justify-content-center">
       <div class="col-md-6">
         <!-- Dentro de tu componente Registro.vue -->
-        <h2
-          class="form-title text-right"
-          v-if="mostrarFormulario === 'login'"
-        >
+        <h2 class="form-title text-left" v-if="mostrarFormulario === 'login'">
           Login
         </h2>
         <h2
-          class="form-title text-right"
+          class="form-title text-left"
           v-else-if="mostrarFormulario === 'registro'"
         >
           Registrarse
         </h2>
-        <h2
-          class="form-title text-right"
-          v-else
-        >
-          ¿Olvidaste tu Contraseña?
-        </h2>
+        <h2 class="form-title text-center" v-else>¿Olvidaste tu Contraseña?</h2>
 
         <form
           v-if="mostrarFormulario === 'login'"
@@ -50,24 +39,15 @@
               placeholder="Contraseña"
             />
           </div>
-          <button
-            type="submit"
-            class="btn btn-success mt-4"
-          >
+          <button type="submit" class="btn btn-success mt-4">
             Iniciar Sesión
           </button>
           <p class="mt-2">
             ¿No tienes una cuenta?
-            <a
-              href="#"
-              @click="cambiarFormulario('registro')"
-              >Regístrate</a
-            >
+            <a href="#" @click="cambiarFormulario('registro')">Regístrate</a>
           </p>
           <p class="mt-2">
-            <a
-              href="#"
-              @click="cambiarFormulario('recuperar')"
+            <a href="#" @click="cambiarFormulario('recuperar')"
               >¿Olvidaste tu contraseña?</a
             >
           </p>
@@ -105,19 +85,12 @@
               placeholder="Repetir Contraseña"
             />
           </div>
-          <button
-            type="submit"
-            class="btn btn-success mt-4"
-          >
+          <button type="submit" class="btn btn-success mt-4">
             Registrarse
           </button>
           <p class="mt-2">
             ¿Ya tienes una cuenta?
-            <a
-              href="#"
-              @click="cambiarFormulario('login')"
-              >Iniciar Sesión</a
-            >
+            <a href="#" @click="cambiarFormulario('login')">Iniciar Sesión</a>
           </p>
         </form>
 
@@ -135,19 +108,12 @@
               placeholder="Correo Electronico"
             />
           </div>
-          <button
-            type="submit"
-            class="btn btn-info mt-4 custom-btn"
-          >
+          <button type="submit" class="btn btn-info mt-4 custom-btn">
             Enviar Correo de Recuperación
           </button>
           <p class="mt-2">
             ¿Recuerdas tu contraseña?
-            <a
-              href="#"
-              @click="cambiarFormulario('login')"
-              >Iniciar Sesión</a
-            >
+            <a href="#" @click="cambiarFormulario('login')">Iniciar Sesión</a>
           </p>
         </form>
       </div>
@@ -281,9 +247,9 @@ export default class Registro extends Vue {
 
 <style scoped>
 .form-title.text-right {
-  text-align: left;
-  margin-top: 60px;
-  text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.4);
+ 
+  margin-top: 40px;
+  text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.3);
 }
 .login-form,
 .register-form,
@@ -306,7 +272,7 @@ export default class Registro extends Vue {
   font-size: 45px;
   font-family: "Istok Web", sans-serif;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .form-group {
@@ -328,7 +294,7 @@ input {
 }
 
 input:focus {
-  background-color: rgba(118, 75, 162, 0.35);
+  background-color: rgba(255, 255, 255, 0.35);
 }
 
 .btn-success,
@@ -360,5 +326,12 @@ img:hover {
 }
 .custom-btn {
   color: #fff !important;
+}
+
+a {
+  color: #764ba2;
+}
+a:active {
+  color: #200b35;
 }
 </style>

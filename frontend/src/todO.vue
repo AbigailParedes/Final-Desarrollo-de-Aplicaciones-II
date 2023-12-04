@@ -1,83 +1,154 @@
 <template>
-  <div class="hello">
-    <img
-      src="./assets/Listo_logo.png"
-      alt=""
-    />
+  <div class="container-fluid">
+    <!--navbar con logo y boton de cerrar sesion-->
+    <div class="row justify-content-center">
+    <nav id="nav" class="navbar .collapse.navbar-collapse mb-5">
 
-    <div v-if="editandoTarea">
-      <h3>Editar Tarea</h3>
-      <label>Título</label>
-      <input v-model="tareaEditada.titulo" />
-      <br />
-      <label>Fecha</label>
-      <input
-        type="date"
-        v-model="tareaEditada.fecha"
-      />
-      <br />
-      <label>Cuerpo</label>
-      <textarea v-model="tareaEditada.cuerpo"></textarea>
-      <br />
-      <label>Completada</label>
-      <input
-        type="checkbox"
-        v-model="tareaEditada.completado"
-      />
-      <br />
-      <button @click="actualizarTarea()">Guardar Cambios</button>
-    </div>
+      <div class=" d-flex justify-content-between align-items-center col mb-2">
 
-    <div class="container">
-      <h3>Nueva Tarea</h3>
-      <label for="titulo-tarea">Título</label>
-      <input v-model="nuevaTarea.titulo" />
-      <br />
-      <label for="date">Fecha</label>
-      <input
-        id="date"
-        type="date"
-        v-model="nuevaTarea.fecha"
-      />
-      <br />
-      <label for="cuerpo">Cuerpo</label>
-      <textarea
-        v-model="nuevaTarea.cuerpo"
-        id="cuerpo"
-      ></textarea>
-      <br />
-      <button
-        @click="crearTarea()"
-        class="btn btn-danger mt-2"
-      >
-        Crear Tarea
-      </button>
-      <button
-        @click="signOut"
-        class="btn btn-danger mt-2"
-        id="cerrar-sesion"
-      >
-        Cerrar Sesión
-      </button>
-    </div>
+        <div class=" col-md-4 mx-auto mt-3">
+          <img src="./assets/Listo_logo.png" alt=" lOGO APP" />
+        </div>
 
-    <h1 class="titulo-lista">Lista de tareas</h1>
+        <div class=" col-md-4 mx-auto mt-3">
+        <ul>
+         <router-link to="/about" style="text-decoration: none;"><li> Novedades<i class="fa-solid fa-arrow-up-right-from-square" style="color: #ffffff"></i></li></router-link> 
+        </ul>
+        </div>
 
-    <ul>
-      <li
-        v-for="tareaItem in tarea"
-        :key="tareaItem._id"
-      >
-        {{ tareaItem.titulo }} -
-        {{ tareaItem.completado ? "Completada" : "Pendiente" }}
-        <br />
-        {{ tareaItem.fecha }} - {{ tareaItem.cuerpo }}
-        <br />
-        <button @click="editarTarea(tareaItem._id)">Editar</button>
-        <button @click="borrarTarea(tareaItem._id)">Eliminar</button>
-      </li>
-    </ul>
+        <div class="d-flex justify-content-end col-md-4  mt-3">
+          <button @click="signOut" class="btn btn-danger mt-2" id="cerrar-sesion"> Cerrar Sesión</button>
+        </div>
+
+      </div>
+      <!-- ............-->
+
+    </nav>
+
   </div>
+    <div class="row justify-content-center">
+      <div class="hello">
+
+
+
+        <!--titulo de la seccion lista de tareas-->
+        <span>
+        <h1 class="h3 text-left m-2"> <i class="fa-solid fa-list-check" style="color: #301155;  width: 50px;"></i><strong>Tu lista de tareas</strong>  </h1>
+        
+        </span>
+        <hr style="width: 35%;">
+
+        <div class="d-flex justify-content-between align-items-center col ">
+           <!-- Botón para mostrar el formulario de nueva tarea -->
+           <div  class=" col mx-auto " >
+
+          <button id="nueva-tarea" @click="mostrarFormularioNuevaTarea"> + Nueva Tarea </button>
+
+          <!-- Botones de filtrado -->
+          <button @click="mostrarTareasPendientes">Ver Pendientes</button>
+          <button @click="mostrarTareasCompletadas">Ver Completadas</button>
+          <button @click="mostrarTodas">Mostrar Todas</button>
+        </div>
+      </div>
+        <!-- Botón para cerrar la sesión -->
+       <!-- <button @click="signOut">Cerrar Sesión</button>-->
+
+        <!-- Formulario de edición -->
+        <div v-if="editandoTarea" class="col-md-4 mx-auto mt-3">
+          <div class="card">
+            <div class="card-body">
+              <h3 class="card-title">Editar Tarea</h3>
+              <label>Título</label>
+              <input v-model="tareaEditada.titulo" class="form-control" id="titulo-editado"/>
+              <label>Fecha</label>
+              <input type="date" v-model="tareaEditada.fecha" class="form-control" />
+              <label>Cuerpo</label>
+              <textarea v-model="tareaEditada.cuerpo" class="form-control"></textarea>
+
+              <div class="form-check">
+              
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="tareaEditada.completado" />
+              <label class="form-check-label" for="flexCheckDefault">Completada</label>
+              
+              </div>
+              <br />
+
+              <button @click="actualizarTarea()" class="btn btn-primary mt-2">
+                Guardar Cambios
+              </button>
+              <button @click="cancelarEdition" class="btn btn-secondary mt-2">
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de nueva tarea -->
+        <div v-if="mostrarFormNuevaTarea" class="col-md-4 mx-auto mt-3 ">
+          <div class="card ">
+            <div class="card-body  ">
+              <h3 class="card-title ">Nueva Tarea  </h3>
+              <label for="titulo-tarea">Título</label>
+              <input v-model="nuevaTarea.titulo" class="form-control" type="text" placeholder="ingrese un titulo"/>
+              <label>Fecha</label>
+              <input type="date" v-model="nuevaTarea.fecha" class="form-control" />
+              <label>Cuerpo</label>
+              <textarea v-model="nuevaTarea.cuerpo" class="form-control"></textarea>
+              <br />
+              <button @click="crearTarea()" class="btn btn-danger mt-2">
+                Crear Tarea
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tareas existentes -->
+        <div class="row">
+          <div v-for="tareaItem in tareaMostrada" :key="tareaItem._id" class="col-md-2 mb-3 mt-3 style= max-width:50% " >
+            <div class="card position-relative text-white bg-dark mb-3">
+              <div class="card-body " id="cards-tareas">
+                <div class="d-flex justify-content-between align-items-center mb-2 ">
+
+                  <h5 class="card-title titulo-tarea">
+                    {{ tareaItem.titulo }}
+                  </h5>
+                  <i class="fas fa-edit" @click="editarTarea(tareaItem._id)" style="cursor: pointer;"></i>
+                
+                </div>
+              
+                <p class="card-text cuerpo-tarea text-center">
+                  {{ tareaItem.cuerpo }}
+                </p>
+                <p class="card-text fecha-tarea mb-2">
+                  {{ tareaItem.fecha }}
+                </p>
+                <p class="card-text">
+                  {{ tareaItem.completado ? "Completada" : "Pendiente" }}
+                </p>
+                <button @click="borrarTarea(tareaItem._id)">Eliminar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </div>
+    
+    <footer class=" text-center">
+          <!-- Grid container -->
+          <div class="d-flex justify-content-end mb-5 ">
+       <router-link to="/equipo" style="text-decoration: none; color: #ffffff;"> <p class="display 3"> Conocé nuestro Equipo <i class="fa-solid fa-code"></i></p></router-link></div>
+           
+        </footer>
+    
+
+</div>
+
+ 
+
 </template>
 
 <script lang="ts">
@@ -96,6 +167,7 @@ interface Tarea {
 
 @Component
 export default class Hello extends Vue {
+  [x: string]: any;
   tarea: Tarea[] = [];
   editandoTarea: string | null = null;
   tareaEditada: Tarea = {
@@ -105,14 +177,44 @@ export default class Hello extends Vue {
     fecha: "",
     completado: false,
   };
-  nuevaTarea: Tarea = {
-    _id: "",
+  nuevaTarea: {
+    titulo: string;
+    cuerpo: string;
+    fecha: string;
+    completado: boolean;
+  } = {
     titulo: "",
     cuerpo: "",
     fecha: "",
     completado: false,
   };
   $router: any;
+  tareaMostrada: Tarea[] | undefined;
+  data() {
+    return {
+      tareaMostrada: [],
+      tarea: [], // otros datos aquí
+      editandoTarea: null,
+      tareaEditada: {
+        _id: "",
+        titulo: "",
+        cuerpo: "",
+        fecha: "",
+        completado: false,
+      } as Tarea,
+      nuevaTarea: {
+        titulo: "",
+        cuerpo: "",
+        fecha: "",
+        completado: false,
+      },
+      mostrarFormNuevaTarea: false,
+    };
+  }
+  created() {
+    // Llamada a mostrar todas las tareas al cargar el componente
+    this.mostrarTodas();
+  }
 
   signOut() {
     auth
@@ -133,6 +235,7 @@ export default class Hello extends Vue {
     } catch (error) {
       console.log(error);
     }
+    this.mostrarTodas();
   }
 
   editarTarea(id: string): void {
@@ -140,6 +243,7 @@ export default class Hello extends Vue {
     this.tareaEditada = {
       ...this.tarea.find((tarea) => tarea._id === id),
     } as Tarea;
+    this.mostrarFormNuevaTarea = false;
   }
 
   async actualizarTarea(): Promise<void> {
@@ -158,6 +262,7 @@ export default class Hello extends Vue {
       console.log(error);
     }
   }
+
   compararTituloFecha() {
     if (this.nuevaTarea.titulo === "" && this.nuevaTarea.fecha === "") {
       return "titulo ni fecha";
@@ -179,7 +284,7 @@ export default class Hello extends Vue {
       } else {
         console.log("Creando tarea:", this.nuevaTarea);
         const respuesta = await axios.post(
-          `http://localhost:3000/upso/tareas/`,
+          `http://localhost:3000/todo/tareas/`,
           this.nuevaTarea
         );
         console.log("Respuesta del servidor:", respuesta.data);
@@ -187,6 +292,8 @@ export default class Hello extends Vue {
         this.nuevaTarea.titulo = "";
         this.nuevaTarea.cuerpo = "";
         this.nuevaTarea.fecha = "";
+
+        this.mostrarFormNuevaTarea = false;
       }
     } catch (error) {
       console.error(error);
@@ -195,10 +302,27 @@ export default class Hello extends Vue {
 
   async borrarTarea(id: string): Promise<void> {
     try {
-      await axios.delete(`http://localhost:3000/todo/tareas/${id}`);
-      this.tarea = this.tarea.filter((tarea) => tarea._id !== id);
+      const confirmacion = await Swal.fire({
+        title: "¿Estás seguro?",
+        text: "No podrás revertir esto",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sí, eliminar",
+      });
+
+      if (confirmacion.isConfirmed) {
+        // Eliminar del servidor
+        await axios.delete(`http://localhost:3000/todo/tareas/${id}`);
+
+        // Actualizar localmente
+        this.tarea = this.tarea.filter((tarea) => tarea._id !== id);
+        // Forzar la actualización de Vue
+        this.$forceUpdate();
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error al eliminar tarea:", error);
     }
   }
 
@@ -213,6 +337,37 @@ export default class Hello extends Vue {
     };
   }
 
+  // Método para obtener solo las tareas pendientes
+  obtenerTareasPendientes(): Tarea[] {
+    return this.tarea.filter((t) => !t.completado);
+  }
+
+  // Método para obtener solo las tareas completadas
+  obtenerTareasCompletadas(): Tarea[] {
+    return this.tarea.filter((t) => t.completado);
+  }
+
+  // Método para mostrar solo las tareas pendientes
+  mostrarTareasPendientes(): void {
+    this.tareaMostrada = this.obtenerTareasPendientes();
+  }
+
+  // Método para mostrar solo las tareas completadas
+  mostrarTareasCompletadas(): void {
+    this.tareaMostrada = this.obtenerTareasCompletadas();
+  }
+
+  // Método para mostrar todas las tareas
+  mostrarTodas(): void {
+    this.tareaMostrada =[...this.tarea];}
+    
+  // Función para mostrar/ocultar el formulario de nueva tarea
+  mostrarFormularioNuevaTarea() {
+    this.mostrarFormNuevaTarea = !this.mostrarFormNuevaTarea;
+  }
+
+
+
   mounted() {
     this.obtenerTareas();
   }
@@ -225,28 +380,40 @@ export default class Hello extends Vue {
 
   font-family: "Arial", sans-serif;
 }
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-  font-family: "Arial", sans-serif;
-}
 
+
+#nav {
+ 
+
+ background-image: linear-gradient(135deg, #070208 0%, rgb(43, 9, 63) 100%); 
+ margin-bottom:40px;
+ box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+ left: 0px;
+ top:0px;
+
+}
+/**titulo de la seccion */
 h1 {
-  color: #333;
+  color: #301155;
   text-align: center;
 }
 
+
+
+
+/*estilo para el link de proximo*/ 
 ul {
   list-style: none;
   padding: 0;
 }
 
 li {
-  margin: 10px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
+  
+  color: #ffff;
   border-radius: 5px;
-  background-color: #f8f8f8;
+  display: block;
+  cursor: pointer;
+ 
 }
 
 img {
@@ -255,50 +422,48 @@ img {
   margin-left: 0px;
   margin-top: 0px;
   display: block;
+ 
 }
 
-.navbar {
-  width: 1000vh;
-  height: 90px;
-  padding: 25px;
-}
 
-button {
-  margin-left: 5px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
+
+
+
+/* input titulo de tarea editada -----*/ 
+#titulo-editado{
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
   padding: 5px 10px;
-  border-radius: 3px;
+  border: 2px solid #764ba2 ;
 }
 
-button:hover {
-  background-color: #45a049;
+/* inputs de nueva tarea -----*/ 
+
+input[type="text"]{
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 5px 10px;
+  border: 2px solid #764ba2 ;
 }
-
-
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-input,
+input[type="date"],
 textarea {
-  width: 100%;
+  
   padding: 8px;
   margin-bottom: 10px;
   box-sizing: border-box;
   border-radius: 10px;
   padding: 15px;
-  border: none;
+  border: 2px solid #764ba2 ;
+ 
 }
 
-input[type="checkbox"] {
-  margin-top: 5px;
-}
-
+/* estilos de los botones */
 button {
+  margin-left: 5px;
   cursor: pointer;
   background-color: #764ba2;
   color: #fff;
@@ -306,18 +471,53 @@ button {
   padding: 10px 15px;
   border-radius: 5px;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 button:hover {
-  background-color: #d5fa6f;
-  color: black;
+  background-color: #9e68d3;
+  color: #fff;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+#nueva-tarea{
+  width: 200px;
+  font-size: bold;}
+
+
+/**fin estilos botones */
 .titulo-lista {
   font-size: 30px;
   color: #5b5b5b;
   font-family: "Istok Web", sans-serif;
   font-weight: bold;
+}
+
+
+
+#cards-tareas{
+  box-shadow: 5px 5px 10px  rgba(0, 0, 0, 0.3);
+
+
+}
+
+footer {
+  background-image: linear-gradient(135deg, #070208 0%, rgb(43, 9, 63) 100%); 
+    position:fixed ;
+   left:0px;
+   bottom:0px;
+   
+   padding: 20px;
+   height:50px;
+   width:100%;
+   color: #fff;
+   
+}
+footer p{
+  text-align: center;
+  
+ margin-bottom: 50px;
+ font-size: 15px;
+  
 }
 </style>

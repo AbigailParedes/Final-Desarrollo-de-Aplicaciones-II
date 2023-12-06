@@ -1,58 +1,52 @@
 <template>
-  
+  <section>
+    <div class="row">
+      <!-- Título del equipo -->
+      <h2 class="display-6"><strong>Nuestro equipo</strong></h2>
+    </div>
 
-    <section>
-      <div class="row">
-        <h2 class="display-6"> <strong>Nuestro equipo</strong></h2>
-       
-      </div>
-      <div class="row">
-        <!-- Column 1-->
-      
-        <div class="column">
-          <div class="card">
-            <div class="img-container">
-              <img src="../assets/fotoClau_.jpeg" />
-            </div>
-            <h3>Claudia Jungblut</h3>
-            <p>Programadora</p>
-            
+    <!-- Sección de tarjetas del equipo -->
+    <div class="row">
+      <!-- Columna 1 - Claudia Jungblut -->
+      <div class="column">
+        <div class="card">
+          <div class="img-container">
+            <!-- Imagen de Claudia Jungblut -->
+            <img src="../assets/fotoClau_.jpeg" />
           </div>
-        </div>
-        <!-- Column 2-->
-        <div class="column">
-          <div class="card">
-            <div class="img-container">
-              <img src="../assets/fotoNiklas.jpeg" />
-            </div>
-            <h3>Niklas Weinberger</h3>
-            <p>Programador</p>
-            
-          </div>
-        </div>
-        <!-- Column 3-->
-        <div class="column">
-          <div class="card">
-            <div class="img-container">
-              <img src="../assets/fotoAbi.jpg" />
-            </div>
-            <h3>Abigail Paredes</h3>
-            <p>Programadora</p>
-            
-          </div>
+          <h3>Claudia Jungblut</h3>
+          <p>Programadora</p>
         </div>
       </div>
-      <router-link to="/todO" >Volver a Notas</router-link>
-    </section>
- 
 
-  
-            
+      <!-- Columna 2 - Niklas Weinberger -->
+      <div class="column">
+        <div class="card">
+          <div class="img-container">
+            <!-- Imagen de Niklas Weinberger -->
+            <img src="../assets/fotoNiklas.jpeg" />
+          </div>
+          <h3>Niklas Weinberger</h3>
+          <p>Programador</p>
+        </div>
+      </div>
 
+      <!-- Columna 3 - Abigail Paredes -->
+      <div class="column">
+        <div class="card">
+          <div class="img-container">
+            <!-- Imagen de Abigail Paredes -->
+            <img src="../assets/fotoAbi.jpg" />
+          </div>
+          <h3>Abigail Paredes</h3>
+          <p>Programadora</p>
+        </div>
+      </div>
+    </div>
 
-
-
-    
+    <!-- Enlace para regresar a la página de notas -->
+    <router-link to="/todO">Volver a Notas</router-link>
+  </section>
 </template>
 
 <script lang="ts">
@@ -61,16 +55,12 @@ import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class Usuario extends Vue {
   $router: any;
-  created(): void {
-    
-  }
+  created(): void {}
 
   // Método para regresar a todO.vue
   regresarATodo(): void {
     this.$router.push("/todO");
   }
-
-  // Otras funciones y lógica...
 }
 </script>
 
@@ -79,24 +69,20 @@ p {
   font-size: 25px;
   color: #333;
   text-align: center;
- 
 }
-a{
+a {
   text-decoration: none;
-  color:rgb(106, 14, 114);
-  
+  color: rgb(106, 14, 114);
 }
-#logo{
+#logo {
   width: 15%;
   height: auto;
   margin-right: 800px;
-  margin-bottom:15px ;
- 
+  margin-bottom: 15px;
 }
-.img-fluid{
+.img-fluid {
   width: 3000px;
 }
-
 
 /**estilos componente nuestro teeeeam */
 * {

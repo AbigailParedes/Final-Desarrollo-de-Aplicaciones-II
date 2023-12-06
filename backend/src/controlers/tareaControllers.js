@@ -1,7 +1,9 @@
+// Importación de modelos y biblioteca de MongoDB
 const Tarea= require('../models/tareasModels');
 const mongoose = require('mongoose');
 
 
+// Obtener todas las tareas
 const getTareas = async (req, res)=> {
     try {
         const tareas = await Tarea.find();
@@ -11,6 +13,8 @@ const getTareas = async (req, res)=> {
         res.status(500).send('error al obtener las tareas')
     }
 };
+
+// Crear una nueva tarea
 const postTareas = async (req, res) => {
     try {
       // Quita _id del cuerpo de la solicitud antes de crear la nueva tarea
@@ -25,7 +29,7 @@ const postTareas = async (req, res) => {
     }
   };
   
-
+// Actualizar una tarea existente por su ID
     const updateTareas = async (req, res)=>{
         try{
             const actualizarTarea = await Tarea.findByIdAndUpdate(req.params.id, req.body, {new: true});
@@ -36,6 +40,7 @@ const postTareas = async (req, res) => {
         }
     };
 
+// Eliminar una tarea por su ID
     const deleteTarea = async(req, res)=>{
         try{
             await Tarea.findByIdAndDelete(req.params.id);
@@ -45,6 +50,8 @@ const postTareas = async (req, res) => {
         res.status(500).send('Error al borrar la tarea');
     }
 };
+
+// Exportar los controladores de tareas
 
 module.exports={
     getTareas,

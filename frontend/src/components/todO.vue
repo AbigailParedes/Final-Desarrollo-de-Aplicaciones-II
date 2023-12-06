@@ -39,7 +39,6 @@
             </button>
           </div>
         </div>
-        <!-- ............-->
       </nav>
     </div>
     <div class="row justify-content-center">
@@ -65,10 +64,8 @@
             >
               + Nueva Tarea
             </button>
-            <button
-                
-              class="btnTop btn btn-danger mt-2 fixed-bottom"
-              ><a href="#top">^</a>
+            <button class="btnTop btn btn-danger mt-2 fixed-bottom">
+              <a href="#top">^</a>
             </button>
 
             <!-- Botones de filtrado -->
@@ -77,7 +74,6 @@
             <button @click="mostrarTodas">Mostrar Todas</button>
           </div>
         </div>
-        <!-- Botón para cerrar la sesión -->
 
         <!-- Formulario de edición -->
         <div
@@ -170,7 +166,6 @@
               >
                 Crear Tarea
               </button>
-              
             </div>
           </div>
         </div>
@@ -274,7 +269,7 @@ export default class Hello extends Vue {
   data() {
     return {
       tareaMostrada: [],
-      tarea: [], // otros datos aquí
+      tarea: [],
       editandoTarea: null,
       tareaEditada: {
         _id: "",
@@ -297,6 +292,7 @@ export default class Hello extends Vue {
     this.mostrarTodas();
   }
 
+  // Método para cerrar sesión
   signOut() {
     auth
       .signOut()
@@ -309,6 +305,7 @@ export default class Hello extends Vue {
       });
   }
 
+  // Método para obtener todas las tareas desde el servidor
   async obtenerTareas(): Promise<void> {
     try {
       const respuesta = await axios.get(`http://localhost:3000/todo/tareas`);
@@ -319,6 +316,7 @@ export default class Hello extends Vue {
     this.mostrarTodas();
   }
 
+  // Método para iniciar la edición de una tarea
   editarTarea(id: string): void {
     this.editandoTarea = id;
     this.tareaEditada = {
@@ -327,6 +325,7 @@ export default class Hello extends Vue {
     this.mostrarFormNuevaTarea = false;
   }
 
+  // Método para actualizar una tarea
   async actualizarTarea(): Promise<void> {
     try {
       const respuesta = await axios.put(
@@ -344,6 +343,7 @@ export default class Hello extends Vue {
     }
   }
 
+  // Método para comparar el título y la fecha de la nueva tarea y mostrar mensajes de error si es necesario
   compararTituloFecha() {
     if (this.nuevaTarea.titulo === "" && this.nuevaTarea.fecha === "") {
       return "titulo ni fecha";
@@ -354,6 +354,7 @@ export default class Hello extends Vue {
     }
   }
 
+  // Método para crear una nueva tarea
   async crearTarea(): Promise<void> {
     try {
       if (this.nuevaTarea.titulo === "" || this.nuevaTarea.fecha === "") {
@@ -381,6 +382,7 @@ export default class Hello extends Vue {
     }
   }
 
+  // Método para borrar una tarea
   async borrarTarea(id: string): Promise<void> {
     try {
       const confirmacion = await Swal.fire({
@@ -407,6 +409,7 @@ export default class Hello extends Vue {
     }
   }
 
+  // Método para cancelar la edición de una tarea
   cancelarEdition(): void {
     this.editandoTarea = null;
     this.tareaEditada = {
@@ -461,7 +464,7 @@ export default class Hello extends Vue {
   font-family: "Arial", sans-serif;
 }
 
-.btnTop{
+.btnTop {
   width: 65px;
   text-align: center;
   font-size: 30px;
@@ -470,7 +473,7 @@ export default class Hello extends Vue {
   margin-right: 20px;
   margin-left: auto;
 }
-a{
+a {
   text-decoration: none;
   color: white;
 }

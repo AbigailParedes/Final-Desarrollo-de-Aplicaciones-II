@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter, {NavigationGuard} from 'vue-router';
 
-import Bienvenida from './src/bienvenida.vue';
-import todO from './src/todO.vue';
+import Bienvenida from './src/views/bienvenida.vue';
+import todO from './src/components/todO.vue';
 import { auth } from "./firebaseConfig";
 import Registro from "./src/components/Registro.vue";
 

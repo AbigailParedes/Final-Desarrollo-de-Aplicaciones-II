@@ -1,10 +1,16 @@
 <template>
   <div class="container my-4">
-    <img src="../assets/Listo_logo.png" alt="" />
+    <img
+      src="../assets/Listo_logo.png"
+      alt=""
+    />
     <div class="row justify-content-center">
       <div class="col-md-6">
         <!-- Dentro de tu componente Registro.vue -->
-        <h2 class="form-title text-left" v-if="mostrarFormulario === 'login'">
+        <h2
+          class="form-title text-left"
+          v-if="mostrarFormulario === 'login'"
+        >
           Login
         </h2>
         <h2
@@ -13,8 +19,13 @@
         >
           Registrarse
         </h2>
-        <h2 class="form-title text-center" v-else>¿Olvidaste tu Contraseña?</h2>
-
+        <h2
+          class="form-title text-center"
+          v-else
+        >
+          ¿Olvidaste tu Contraseña?
+        </h2>
+        <!-- Formulario de inicio de sesión -->
         <form
           v-if="mostrarFormulario === 'login'"
           @submit.prevent="login"
@@ -39,20 +50,30 @@
               placeholder="Contraseña"
             />
           </div>
-          <button type="submit" class="btn btn-success mt-4">
+          <button
+            type="submit"
+            class="btn btn-success mt-4"
+          >
             Iniciar Sesión
           </button>
           <p class="mt-2">
             ¿No tienes una cuenta?
-            <a href="#" @click="cambiarFormulario('registro')">Regístrate</a>
+            <a
+              href="#"
+              @click="cambiarFormulario('registro')"
+              >Regístrate</a
+            >
           </p>
           <p class="mt-2">
-            <a href="#" @click="cambiarFormulario('recuperar')"
+            <a
+              href="#"
+              @click="cambiarFormulario('recuperar')"
               >¿Olvidaste tu contraseña?</a
             >
           </p>
         </form>
 
+        <!-- Formulario de registro -->
         <form
           v-else-if="mostrarFormulario === 'registro'"
           @submit.prevent="register"
@@ -85,15 +106,23 @@
               placeholder="Repetir Contraseña"
             />
           </div>
-          <button type="submit" class="btn btn-success mt-4">
+          <button
+            type="submit"
+            class="btn btn-success mt-4"
+          >
             Registrarse
           </button>
           <p class="mt-2">
             ¿Ya tienes una cuenta?
-            <a href="#" @click="cambiarFormulario('login')">Iniciar Sesión</a>
+            <a
+              href="#"
+              @click="cambiarFormulario('login')"
+              >Iniciar Sesión</a
+            >
           </p>
         </form>
 
+        <!-- Formulario de recuperación de contraseña -->
         <form
           v-else
           @submit.prevent="forgotPassword"
@@ -108,12 +137,19 @@
               placeholder="Correo Electronico"
             />
           </div>
-          <button type="submit" class="btn btn-info mt-4 custom-btn">
+          <button
+            type="submit"
+            class="btn btn-info mt-4 custom-btn"
+          >
             Enviar Correo de Recuperación
           </button>
           <p class="mt-2">
             ¿Recuerdas tu contraseña?
-            <a href="#" @click="cambiarFormulario('login')">Iniciar Sesión</a>
+            <a
+              href="#"
+              @click="cambiarFormulario('login')"
+              >Iniciar Sesión</a
+            >
           </p>
         </form>
       </div>
@@ -142,6 +178,7 @@ export default class Registro extends Vue {
   emailForgot: string = "";
   $router: any;
 
+  // Método para realizar el inicio de sesión
   login() {
     signInWithEmailAndPassword(auth, this.email, this.password)
       .then((credenciales) => {
@@ -163,6 +200,8 @@ export default class Registro extends Vue {
         console.error(error);
       });
   }
+
+  // Método para realizar el registro de usuario
 
   register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -208,6 +247,7 @@ export default class Registro extends Vue {
     }
   }
 
+  // Método para correo no valido
   forgotPassword() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(this.emailForgot)) {
@@ -218,7 +258,7 @@ export default class Registro extends Vue {
       });
       return;
     }
-
+    // Método para  enviae email recupero contraseña
     sendPasswordResetEmail(auth, this.emailForgot)
       .then(() => {
         Swal.fire({
@@ -238,7 +278,7 @@ export default class Registro extends Vue {
         console.error(error);
       });
   }
-
+  //Método para cambiar el formulario mostrado
   cambiarFormulario(formulario: string) {
     this.mostrarFormulario = formulario;
   }
@@ -247,7 +287,6 @@ export default class Registro extends Vue {
 
 <style scoped>
 .form-title.text-right {
- 
   margin-top: 40px;
   text-shadow: 3.5px 1px 2px rgba(37, 37, 37, 0.3);
 }

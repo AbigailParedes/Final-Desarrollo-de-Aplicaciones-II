@@ -1,54 +1,47 @@
 <template>
   <div class="container my-4">
     <div class="row justify-content-center">
-      <div class=" col-lg-8 col-md-10 col-sm-12">
-
-
-       <!--  <img src="../assets/Listo_logo.png" alt="Login Image" />-->
+      <div class="col-lg-8 col-md-10 col-sm-12">
         <br />
-
-        <p style="color: #3f1e5f;">
+        <!-- Mensaje de próximamente con estilo -->
+        <p style="color: #3f1e5f">
           <strong>¡Pronto tu app de tareas en tu celular!</strong>
         </p>
-      <div class="row ">
-        <div class="d-flex justify-content-between align-items-center col">
+        <!-- Contenido principal -->
+        <div class="row">
+          <div class="d-flex justify-content-between align-items-center col">
+            <div class="d-flex justify-content-right col-md-6 mt-3">
+              <img
+                src="../assets/IMAGEN_CELU_v2.svg"
+                alt="celu-app"
+              />
+            </div>
 
-        <div class="d-flex justify-content-right col-md-6 mt-3">
+            <!-- Información de la próxima app y botón para regresar -->
+            <div class="d-flex justify-content-align-left col-md-6 mb-3 mt-3">
+              <div class="card position-relative text-white bg-dark mb-3">
+                <div class="card-header"><strong>Proximamente</strong></div>
 
-        <img src="../assets/IMAGEN_CELU_v2.svg" alt="celu-app" />
-
-        </div>
-
-        <!-- Botón para regresar a todO.vue -->
-    <div class="d-flex justify-content-align-left col-md-6 mb-3 mt-3 ">
-
-        <div  class="card position-relative text-white bg-dark mb-3 " >
-          <div class="card-header "> <strong>Proximamente</strong></div>
-          
-          <div class="card-body">
-            <h4 class="card-title h6">Tu app de tareas</h4>
-            <p class="card-text  ">
-
-             Disponible para Android
-            </p>
-            <img src="../assets/Logo-Android.png" alt="" style="width: 20%;height:auto;">
-            <br>
-            <router-link to="/todO">Volver a Notas</router-link>
+                <div class="card-body">
+                  <h4 class="card-title h6">Tu app de tareas</h4>
+                  <p class="card-text">Disponible para Android</p>
+                  <img
+                    src="../assets/Logo-Android.png"
+                    alt=""
+                    style="width: 20%; height: auto"
+                  />
+                  <br />
+                  <!-- Enlace para regresar a la página de notas -->
+                  <router-link to="/todO">Volver a Notas</router-link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-
       </div>
-
+      <br />
     </div>
-    </div>
-        <br />
-        <!-- O mediante un botón que usa this.$router.push 
-        <button @click="regresarATodo">Volver a Notas</button>-->
-        <!-- Agrega más contenido según tus necesidades -->
   </div>
-</div>
-  
 </template>
 
 <script lang="ts">
@@ -65,27 +58,22 @@ export default class Usuario extends Vue {
   regresarATodo(): void {
     this.$router.push("/todO");
   }
-
-  // Otras funciones y lógica...
 }
 </script>
 
 <style scoped>
 p {
-  font-size:25px;
+  font-size: 25px;
   text-align: center;
 }
 img {
   max-width: 100%;
   height: auto;
-
-  
 }
-
 
 a {
   text-decoration: none;
-  color: #fff;;
+  color: #fff;
 }
 button {
   margin-left: 5px;
@@ -98,7 +86,6 @@ button {
   font-size: 14px;
   margin-bottom: 10px;
 }
-
 </style>
 
 function regresarATodo() { throw new Error("Function not implemented."); }

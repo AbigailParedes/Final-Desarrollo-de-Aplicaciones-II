@@ -29,8 +29,11 @@ import { Component, Vue } from "vue-property-decorator";
 
 export default Vue.extend({
   mounted(): void {
+    // Oculta el cuerpo del documento después de 4 segundos
+    // y redirige a la página de registro después de 5 segundos
     setTimeout(() => {
       document.body.classList.add("hidden");
+      // Redirige solo si no está en la página de registro
       if (this.$route.path !== "/registro") {
         this.$router.push("/registro"); // Redirige a la página de inicio de sesión después de 5 segundos
       }

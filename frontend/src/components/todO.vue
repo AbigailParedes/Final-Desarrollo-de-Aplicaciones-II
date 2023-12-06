@@ -9,6 +9,7 @@
         <div class="d-flex justify-content-between align-items-center col mb-2">
           <div class="col-md-4 mx-auto mt-3">
             <img
+              id="top"
               src="../assets/Listo_logo.png"
               alt=" lOGO APP"
             />
@@ -63,6 +64,11 @@
               @click="mostrarFormularioNuevaTarea"
             >
               + Nueva Tarea
+            </button>
+            <button
+                
+              class="btnTop btn btn-danger mt-2 fixed-bottom"
+              ><a href="#top">^</a>
             </button>
 
             <!-- Botones de filtrado -->
@@ -164,6 +170,7 @@
               >
                 Crear Tarea
               </button>
+              
             </div>
           </div>
         </div>
@@ -452,6 +459,20 @@ export default class Hello extends Vue {
   max-width: 100%;
 
   font-family: "Arial", sans-serif;
+}
+
+.btnTop{
+  width: 65px;
+  text-align: center;
+  font-size: 30px;
+  border-radius: 150px;
+  margin-bottom: 70px;
+  margin-right: 20px;
+  margin-left: auto;
+}
+a{
+  text-decoration: none;
+  color: white;
 }
 
 #nav {

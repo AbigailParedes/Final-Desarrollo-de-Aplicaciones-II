@@ -301,7 +301,7 @@ export default class Hello extends Vue {
         this.$router.push("/");
       })
       .catch((error) => {
-        console.log("Error al serrar sesión:", error);
+        console.log("Error al cerrar sesión:", error);
       });
   }
 
@@ -338,6 +338,7 @@ export default class Hello extends Vue {
       this.$set(this.tarea, actualizarIndexTarea, respuesta.data);
 
       this.cancelarEdition();
+      this.mostrarTodas();
     } catch (error) {
       console.log(error);
     }
@@ -376,6 +377,7 @@ export default class Hello extends Vue {
         this.nuevaTarea.fecha = "";
 
         this.mostrarFormNuevaTarea = false;
+        this.mostrarTodas();
       }
     } catch (error) {
       console.error(error);
@@ -401,9 +403,8 @@ export default class Hello extends Vue {
 
         // Actualizar localmente
         this.tarea = this.tarea.filter((tarea) => tarea._id !== id);
-        // Forzar la actualización de Vue
-        this.$forceUpdate();
       }
+      this.mostrarTodas();
     } catch (error) {
       console.log("Error al eliminar tarea:", error);
     }
